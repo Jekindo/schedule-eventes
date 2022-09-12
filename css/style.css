@@ -7,22 +7,27 @@ body {
   padding-right: 10px;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
 /*! Список этапов конкурса  */
 .stages-list {
   background-color: #fff;
   border-radius: 26px;
-  filter: drop-shadow(-1px 6px 3px rgba(50,50,0,.5));
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 
   list-style: none;
 
   display: flex;
-  gap: 30px;
+  justify-content: space-between;
+  /* gap: 30px; */
   align-items: center;
   max-width: 1440px;
   min-height: 240px;
   margin: 0 auto;
-  padding-left: 19px;
-  padding-right: 36px;
+  padding: 0 20px;
 
   overflow: hidden;
 }
@@ -31,46 +36,51 @@ body {
 .stage-item {
   position: relative;
   z-index: 0;
-	
+
   display: flex;
   align-items: flex-start;
+  gap: 20px;
 }
 
 .stage-item::before {
-	content: '';
-	
-	position: absolute;
-	top: 50%;
-	left: 9%;
-	transform: translateY(-50%);
-	z-index: -1;
+  content: "";
 
-	display: inline-block;
-	width: 356px;
-	height: 356px;
+  position: absolute;
+  top: 50%;
+  left: 9%;
+  transform: translateY(-50%);
+  z-index: -1;
 
-	background-image: linear-gradient(90deg, #ACFCFA 0%, rgba(255, 255, 255, 0) 90%);
-	border-radius: 50%;
+  display: inline-block;
+  width: 140%;
+  height: 297%;
+
+  background-image: linear-gradient(90deg, #acfcfa 0%, rgba(255, 255, 255, 0) 90%);
+  border-radius: 50%;
 }
 
 .stage-item:first-child::before {
-	content: '';
+  content: "";
 
-	left: -70%;
+  left: -50%;
 }
 
 /* Декоративная стрелка */
 .stage-item-arrow {
   background-color: #00b1ff;
+  background-image: url(../images/arrow-right.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px;
   border-radius: 50%;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   align-self: center;
-  width: 50px;
+  min-width: 50px;
   height: 50px;
-  margin-right: 20px;
+}
+
+.stage-item-body {
+  display: flex;
 }
 
 .stage-item-img {
@@ -81,7 +91,7 @@ body {
 }
 
 /* Контент этапа (Текст) */
-.stage-item-body {
+.stage-item-content {
   max-width: 125px;
 }
 
@@ -103,4 +113,87 @@ body {
   line-height: 1.61;
 
   margin: 0;
+}
+
+
+
+/*! АДАПТИВ */
+/** Large: 1189px - 1199px */
+@media (max-width: 1189px) {
+  .container {
+    max-width: 960px;
+  }
+
+  /* ! Список этапов конкурса  */
+  .stages-list {
+    flex-direction: column;
+    max-width: 500px;
+	padding: 40px 20px 40px 40px;
+  }
+
+  .stage-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+	width: 100%;
+  }
+
+  .stage-item:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  .stage-item::before {
+    top: 17%;
+    left: 50%;
+    transform: translateY(0);
+    transform: translateX(-50%);
+
+    background-image: linear-gradient(to bottom, 
+	#acfcfa 0%,
+	 rgba(255, 255, 255, 0) 90%
+	 );
+
+    width: 150%;
+	height: 115%;
+  }
+
+  .stage-item:first-child::before {
+	left: 50%;
+	top: -100%;
+	height: calc(115% * 2);
+  }
+
+  /* Декоративная стрелка */
+  .stage-item-arrow {
+    transform: rotate(90deg);
+  }
+
+  /* Контент этапа (Текст) */
+  .stage-item-content {
+    max-width: 100%;
+  }
+}
+
+/** Medium: 768px - 991px */
+@media (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/** Small: 576px - 767px */
+@media (max-width: 767px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+/** Extra small: opx (320px) - 575px */
+@media (max-width: 575px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .stage-item {
+  }
 }
